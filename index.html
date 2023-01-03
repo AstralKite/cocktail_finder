@@ -5,21 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cocktail Finder</title>
+
+    <script href="src/stylesheet.css" rel="stylesheet"></script>
+    <script src="src/index.js"></script>
 </head>
 
 <body>
     <h1>Cocktail finder</h1>
     <img src="img/cocktail_banner.jpg" alt="missing banner">
 
-    <form id="form">
-        <input type="search">
-        <input type="submit">
-    </form>
+    <div #="seachArea_div">
+        <form id="form">
+            <span>Search options</span>
 
-    <div id="cocktails_div">
-        <ul id="cocktails_ul">
+            <group>
+                <input type="radio" name="search_option"><label>cocktail name</label>
+                <input type="radio" name="search_option"><label>ingreditent</label>
+            </group>
 
-        </ul>
+            <br>
+
+            <input type="search" id="search">
+            <input type="submit">
+        </form>
+
+        <div id="search_results">
+            <div id="cocktails_div">
+                <ul id="cocktails_ul"> <!-- will populate ul with li of each cocktail -->
+                </ul>
+            </div>
+            <div>
+                <ul id="cocktail_preview"></ul>
+            </div>
+        </div>
     </div>
 </body>
 
