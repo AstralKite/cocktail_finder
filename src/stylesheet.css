@@ -2,6 +2,29 @@
     cursor: pointer;
 }
 
-#cocktails_div{
-    
+#cocktail_info_img{
+    border-radius: 8px;
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    display: block;
+    margin: auto;
+}
+
+#cocktail_info_div{
+    float: left;
+    margin-left: 150px;
+    background-color: red;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+}
+
+#cocktail_list_div{
+    float: left;
+}
+
+#cocktail_instructions_p{
+    overflow-wrap: break-word;
 }
