@@ -52,8 +52,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let instrusctionsText = document.createElement("p")
                 instrusctionsText.textContent = `Instructions: ${drink.strInstructions}`;
                 instrusctionsText.id = "cocktail_instructions_p";
-                let fav_button = document.createElement('bottom');
+                let fav_button = document.createElement('button');
+                fav_button.textContent = "Like!";
                 
+
+                //click event for lick button to add new fav cocktail
+                fav_button.addEventListener("click", (e)=>{
+                    e.preventDefault();
+
+                    let table = document.querySelector("#fav_table");
+                    let newRow = document.createElement("tr");
+                    let col_1 = document.createElement("td");
+                    let col_3 = document.createElement("td");
+
+                    //setup coloumn 01
+                    let favCocktailName_p = document.createElement('p');
+                    favCocktailName_p.textContent = cocktailName.textContent;
+                    let favCocktail_img = document.createElement("img");
+                    favCocktail_img.src = img.src;
+                    favCocktail_img.id = "fav_img_ph";
+                    col_1.append(favCocktailName_p, favCocktail_img);
+
+                    //setup column 02
+                    // ratingColoumn() -> called in the newRow.append()
+
+                    //setup coulmn 03
+                    let delete_btn = document.createElement('button');
+                    delete_btn.textContent = "X";
+                    col_3.append(delete_btn);
+
+                    newRow.append(col_1, ratingColoumn(), col_3);
+                    table.append(newRow);
+                    //cocktail name => cocktailName.textContent
+                    //cocktail image => img.src
+                })
+
                 //add click event to each li - click adds cocktail to a preview section
                 li.addEventListener("click", (e)=>{
                     e.preventDefault();
@@ -66,7 +99,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
       
                     //append items to div
-                    div.append(img, cocktailName, glassTypeUsed, instrusctionsText);
+                    div.append(img, cocktailName, glassTypeUsed, instrusctionsText, fav_button);
                     div_main.append(div);
                 });//---end liclick event
                 //append li to UL
@@ -75,3 +108,38 @@ window.addEventListener('DOMContentLoaded', (event) => {
         })//----- end fetch request
     });//----end form submit request
 });
+
+
+
+function ratingColoumn(){
+    let td = document.createElement('td');
+    let select = document.createElement('select');
+
+    select.name = "rating";
+    select.id = "cocktail_rating_id";
+        let option1 = document.createElement('option');
+        option1.value = "average";
+        option1.textContent = "average";
+        let option2 = document.createElement('option');
+        option2.value = "tasty";
+        option2.textContent = "tasty";
+        let option3 = document.createElement('option');
+        option3.value = "excellent";
+        option3.textContent = "excellent";
+    
+    //                          <td>
+    //                             <select name="rating" id="cocktail_rating_id">
+    //                             <option value="average">average</option>
+    //                             <option value="tasty">tasty</option>
+    //                             <option value="excellent">excellent</option>
+    //                             </select>
+    //                         </td>
+
+    select.append(option1, option2, option3);
+    td.append(select);
+    return td;
+}
+
+function buildFavCocktailsList(){
+    fetch("http://localhost:3000/cocktailsDAT")
+}

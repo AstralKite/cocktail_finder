@@ -14,7 +14,7 @@
 
 #cocktail_info_div{
     float: left;
-    margin-left: 150px;
+    margin-left: 100px;
     background-color: red;
     border-radius: 8px;
     padding: 20px;
@@ -27,4 +27,34 @@
 
 #cocktail_instructions_p{
     overflow-wrap: break-word;
+}
+
+/* #fav_list_div{
+    float: left;
+    margin-left: 150px;
+    background-color: red;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+} */
+
+#fav_img_ph{
+    border-radius: 8px;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    display: block;
+    margin: auto;
+}
+
+table, th, td{
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 3px;
+    padding: 1px;
+    position: relative;
+    width: 300px;
+    background-color: rgb(217, 200, 114);
+    margin-left: 150px;
 }
