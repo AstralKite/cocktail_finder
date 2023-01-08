@@ -1,7 +1,10 @@
 
 
+
 window.addEventListener('DOMContentLoaded', (event) => {
     
+    buildFavCocktailsList();
+
     //access to body elements
     const form = document.querySelector("#form");
     const ul = document.querySelector("#cocktails_ul");
@@ -15,12 +18,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         //switch case to find which url link to use based on the radio buttons (eventually)
         const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + input;
 
-        console.log("children count before loop: " + ul.children.length);
         let count = ul.children.length;
         //remove current list from UL
         for(let i = count-1; i >= 0; i--){
-            console.log(i);
-            console.log("remove element: " + ul.children)
             ul.children[i].remove();
         }
 
@@ -90,7 +90,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //add click event to each li - click adds cocktail to a preview section
                 li.addEventListener("click", (e)=>{
                     e.preventDefault();
-                    console.log(li.textContent);
 
                     //delete previous cocktail info display div if it exists
                     let div_delete = document.querySelector("#cocktail_info_div");
@@ -142,4 +141,38 @@ function ratingColoumn(){
 
 function buildFavCocktailsList(){
     fetch("http://localhost:3000/cocktailsDAT")
+    .then( (resp) => resp.json())
+    .then( (data) => {
+        for(cocktail in data){           
+            //name = data[cocktail].name;
+            //imageUrl = data[cocktail].imageUrl;
+            //rating = data[cocktail].rating;
+
+            let table = document.querySelector("#fav_table");
+                    let newRow = document.createElement("tr");
+                    let col_1 = document.createElement("td");
+                    let col_3 = document.createElement("td");
+
+                    //setup coloumn 01
+                    let favCocktailName_p = document.createElement('p');
+                    favCocktailName_p.textContent = data[cocktail].name;
+                    let favCocktail_img = document.createElement("img");
+                    favCocktail_img.src = data[cocktail].imageUrl;
+                    favCocktail_img.id = "fav_img_ph";
+                    col_1.append(favCocktailName_p, favCocktail_img);
+
+                    //setup column 02
+                    // ratingColoumn() -> called in the newRow.append()
+
+                    //setup coulmn 03
+                    let delete_btn = document.createElement('button');
+                    delete_btn.textContent = "X";
+                    col_3.append(delete_btn);
+
+                    newRow.append(col_1, ratingColoumn(), col_3);
+                    table.append(newRow);
+                    //cocktail name => cocktailName.textContent
+                    //cocktail image => img.src
+        }
+    })
 }

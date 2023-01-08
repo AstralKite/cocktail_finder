@@ -5,6 +5,12 @@
         "name": "Marg",
         "imageUrl": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
         "rating": 3
+      },
+      {
+        "id": 1,
+        "name": "Marg",
+        "imageUrl": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+        "rating": 3
       }
     ]
   }
