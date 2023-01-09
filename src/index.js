@@ -81,6 +81,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     delete_btn.textContent = "X";
                     col_3.append(delete_btn);
 
+                    //------------------------------------------add new cocktail to DB
+                    addFavCocktailToDB(cocktailName.textContent, img.src)
+
                     newRow.append(col_1, ratingColoumn(), col_3);
                     table.append(newRow);
                     //cocktail name => cocktailName.textContent
@@ -116,6 +119,9 @@ function ratingColoumn(){
 
     select.name = "rating";
     select.id = "cocktail_rating_id";
+        let option0 = document.createElement('option');
+        option0.value = "";
+        option0.textContent = "-- unrated --";
         let option1 = document.createElement('option');
         option1.value = "average";
         option1.textContent = "average";
@@ -125,6 +131,8 @@ function ratingColoumn(){
         let option3 = document.createElement('option');
         option3.value = "excellent";
         option3.textContent = "excellent";
+
+        option3.selected = "selected";
     
     //                          <td>
     //                             <select name="rating" id="cocktail_rating_id">
@@ -134,12 +142,99 @@ function ratingColoumn(){
     //                             </select>
     //                         </td>
 
-    select.append(option1, option2, option3);
+    select.append(option0, option1, option2, option3);
     td.append(select);
     return td;
 }
 
+
+function ratingColoumnFromDB(data){
+    let td = document.createElement('td');
+    let select = document.createElement('select');
+
+
+    //select may need an onChange() function to handle option changes
+
+    select.name = data.id;
+    select.id = "cocktail_rating_id";
+        let option0 = document.createElement('option');
+        option0.value = 0;
+        option0.textContent = "-- unrated --";
+        let option1 = document.createElement('option');
+        option1.value = 1;
+        option1.textContent = "average";
+        let option2 = document.createElement('option');
+        option2.value = 2;
+        option2.textContent = "tasty";
+        let option3 = document.createElement('option');
+        option3.value = 3;
+        option3.textContent = "excellent";
+
+        let optionArray = [option0, option1, option2, option3];
+        //console.log(optionArray.find( (element) => element.value == data.rating));
+        optionArray.find( (element) => element.value == data.rating).selected = "selected";
+        
+
+        //--------------------------------------------------  on change event for current dropdown select
+        select.addEventListener("change", (e)=>{
+            // console.log(e.target.value)
+            // console.log(e.target)
+
+            //GET request of the current DB - Add to JS object - Find match of Select.name && Data.id -- on match go inside id's parent object and update the rating
+            
+            let selectPosition = parseInt(select.name);
+
+            //create placeholder object of DB
+            let tempDB = [];
+            
+            fetch("http://localhost:3000/cocktailsDAT")
+            .then( (resp) => resp.json())
+            .then( (data) => {
+                console.log(data);
+                for(cocktail in data){    
+                   if(selectPosition == data[cocktail].id){
+                    console.log(data[cocktail].name);
+                    data[cocktail].rating = selectPosition;
+                    console.log(data);
+                   }
+                }
+            })
+
+            //---------------------------------  make POST to update DB rating
+        });
+    
+    select.append(option0, option1, option2, option3);
+    td.append(select);
+    return td;
+}
+
+//------------------------------------------------------------POST new fav selection to Database
+function addFavCocktailToDB(name_dat, imgURL_dat){
+
+    //create object to POST
+    const favCocktail = {
+        id: 0,
+        name: name_dat,
+        imageUrl: imgURL_dat,
+        rating: 0
+    }
+
+
+    //POST that created object
+    fetch("http://localhost:3000/cocktailsDAT", {
+        method: 'POST',
+        headers: {
+            'content-Type': 'application/json',
+        },
+        body: JSON.stringify(favCocktail)
+    })
+}
+
+
+
+//----------------------------------------------------------Build fav list from database - build at webpage load (called once)
 function buildFavCocktailsList(){
+    //GET request
     fetch("http://localhost:3000/cocktailsDAT")
     .then( (resp) => resp.json())
     .then( (data) => {
@@ -169,7 +264,7 @@ function buildFavCocktailsList(){
                     delete_btn.textContent = "X";
                     col_3.append(delete_btn);
 
-                    newRow.append(col_1, ratingColoumn(), col_3);
+                    newRow.append(col_1, ratingColoumnFromDB(data[cocktail]), col_3);
                     table.append(newRow);
                     //cocktail name => cocktailName.textContent
                     //cocktail image => img.src
