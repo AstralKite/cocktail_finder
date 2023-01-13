@@ -15,7 +15,7 @@
 #cocktail_info_div{
     float: left;
     margin-left: 100px;
-    background-color: red;
+    background-color: rgb(117, 170, 220);
     border-radius: 8px;
     padding: 20px;
     width: 300px;
@@ -28,15 +28,6 @@
 #cocktail_instructions_p{
     overflow-wrap: break-word;
 }
-
-/* #fav_list_div{
-    float: left;
-    margin-left: 150px;
-    background-color: red;
-    border-radius: 8px;
-    padding: 20px;
-    width: 300px;
-} */
 
 #fav_img_ph{
     border-radius: 8px;

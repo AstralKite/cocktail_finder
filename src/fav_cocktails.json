@@ -8,27 +8,9 @@
     },
     {
       "id": 2,
-      "name": "Ass",
+      "name": "Two",
       "imageUrl": "https://www.thecocktaildb.com/images/media/drink/qcgz0t1643821443.jpg",
       "rating": 2
-    },
-    {
-      "id": 3,
-      "name": "Tommy's Margarita",
-      "imageUrl": "https://www.thecocktaildb.com/images/media/drink/loezxn1504373874.jpg",
-      "rating": 0
-    },
-    {
-      "id": 4,
-      "name": "Strawberry Margarita",
-      "imageUrl": "https://www.thecocktaildb.com/images/media/drink/tqyrpw1439905311.jpg",
-      "rating": 0
-    },
-    {
-      "id": 5,
-      "name": "Blue Margarita",
-      "imageUrl": "https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg",
-      "rating": 0
     }
   ]
 }
