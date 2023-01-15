@@ -1,5 +1,5 @@
 # Cocktail Finder webpage
-This course project made for FlatIron school that allows you to search through a database of cocktails (provided by [The Cocktail DB](https://www.thecocktaildb.com) ).
+This course project made for FlatIron school allows users to search through a database of cocktails (provided by [The Cocktail DB](https://www.thecocktaildb.com) ).
 
 * You can learn how to make a cocktail
 * You can save your favorites
