@@ -13,3 +13,7 @@ The favorites list will have 2 cocktails already added.
 
 ---
 
+
+# Video Walkthrough
+([Link of a video showing how to use the webpage](https://youtu.be/tRwD-qOEL8w) ).
+---

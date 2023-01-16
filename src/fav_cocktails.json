@@ -11,12 +11,6 @@
       "name": "Two",
       "imageUrl": "https://www.thecocktaildb.com/images/media/drink/qcgz0t1643821443.jpg",
       "rating": 2
-    },
-    {
-      "id": 3,
-      "name": "Whitecap Margarita",
-      "imageUrl": "https://www.thecocktaildb.com/images/media/drink/srpxxp1441209622.jpg",
-      "rating": 0
     }
   ]
 }
