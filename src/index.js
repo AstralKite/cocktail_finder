@@ -28,12 +28,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function addFavCocktailToDB(name_dat, imgURL_dat){
     
-    //update favorite cocktail header count
     favListCount++;
     let favCount_p = document.querySelector("#favCocktailsCount");
     favCount_p.textContent = favListCount;
 
-    //create object to POST
     const favCocktail = {
         id: 0,
         name: name_dat,
@@ -41,7 +39,6 @@ function addFavCocktailToDB(name_dat, imgURL_dat){
         rating: 0
     }
 
-    //POST that created object
     fetch("http://localhost:3000/cocktailsDAT", {
         method: 'POST',
         headers: {
