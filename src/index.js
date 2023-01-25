@@ -77,7 +77,7 @@ function fetchData(input, drinkArray, url, ul){
                 let fav_button = document.createElement('button');
                 fav_button.textContent = "Like!";
                 
-
+                
                 addLikeButtonToDisplay(fav_button, cocktailName, img);
 
                 li.addEventListener("click", (e)=>{
@@ -98,27 +98,35 @@ function fetchData(input, drinkArray, url, ul){
 
 
 function buildFavCocktailsList(){
+
     fetch("http://localhost:3000/cocktailsDAT")
     .then( (resp) => resp.json())
     .then( (data) => {
-        for(cocktail in data){           
-            let table = document.querySelector("#fav_table");
-                    let newRow = document.createElement("tr");
-                    let col_1 = document.createElement("td");
-
-                    let favCocktailName_p = document.createElement('p');
-                    favCocktailName_p.textContent = data[cocktail].name;
-                    let favCocktail_img = document.createElement("img");
-                    favCocktail_img.src = data[cocktail].imageUrl;
-                    favCocktail_img.id = "fav_img_ph";
-                    col_1.append(favCocktailName_p, favCocktail_img);
-
-                    newRow.append(col_1);
-                    table.append(newRow);
-        }
+        console.log(data);
+        data.forEach(element => {
+            console.log("some");
+            buildList(element); 
+        });
         updateFavListHeaderCount(data);
-    })
+    } )
 }
+
+
+//--------------------------------------------------------------------
+function buildList(data){
+    let table = document.querySelector("#fav_table");
+        let favCocktailName_p = document.createElement('p');
+        favCocktailName_p.textContent = data.name;
+        let favCocktail_img = document.createElement("img");
+        favCocktail_img.src = data.imageUrl;
+        favCocktail_img.id = "fav_img_ph";
+
+        let rating = document.createElement('p');
+        rating.textContent = "rating: " + data.rating;
+
+        updateFavList(favCocktailName_p.textContent, favCocktail_img, rating.textContent);
+}
+
 
 function updateFavListHeaderCount(data){
     let favCount_p = document.querySelector("#favCocktailsCount");
@@ -130,20 +138,28 @@ function addLikeButtonToDisplay(fav_button, cocktailName, img){
     fav_button.addEventListener("click", (e)=>{
         e.preventDefault();
 
-        let table = document.querySelector("#fav_table");
-        let newRow = document.createElement("tr");
-        let col_1 = document.createElement("td");
-
         let favCocktailName_p = document.createElement('p');
         favCocktailName_p.textContent = cocktailName.textContent;
         let favCocktail_img = document.createElement("img");
         favCocktail_img.src = img.src;
         favCocktail_img.id = "fav_img_ph";
-        col_1.append(favCocktailName_p, favCocktail_img);
+        let ratingDefualt_p = document.createElement("p");
+        ratingDefualt_p.textContent =  "rating: " + 0;
+        
+        updateFavList(favCocktailName_p.textContent, favCocktail_img, ratingDefualt_p.textContent);
 
         addFavCocktailToDB(cocktailName.textContent, img.src);
-        
+    })
+}
+
+
+function updateFavList(name, img, rating){
+        let table = document.querySelector("#fav_table");
+        let newRow = document.createElement("tr");
+        let col_1 = document.createElement("td");
+
+    
+        col_1.append(name, img, rating);
         newRow.append(col_1);
         table.append(newRow);
-    })
 }

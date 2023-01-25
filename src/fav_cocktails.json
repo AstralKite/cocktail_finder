@@ -4,13 +4,19 @@
       "id": 1,
       "name": "Marg",
       "imageUrl": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
-      "rating": 3
+      "rating": 10
     },
     {
       "id": 2,
       "name": "Two",
       "imageUrl": "https://www.thecocktaildb.com/images/media/drink/qcgz0t1643821443.jpg",
-      "rating": 2
+      "rating": 50
+    },
+    {
+      "id": 3,
+      "name": "Gin Toddy",
+      "imageUrl": "https://www.thecocktaildb.com/images/media/drink/jxstwf1582582101.jpg",
+      "rating": 0
     }
   ]
 }
